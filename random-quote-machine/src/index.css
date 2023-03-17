@@ -1,0 +1,20 @@
+:root {
+  --main-background-color: #7F7C73;
+  --quoteBox-color: #F4E1A6;
+
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
+#quote-box {
+  background-color: var(--main-background-color);
+  padding: 50px;
+  color:white;
+}
+
+.btn {
+  margin-top: 50px;
+  margin-right: 10px;
+}
