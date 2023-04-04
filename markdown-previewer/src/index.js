@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
 
+import { marked } from 'marked'
+
 
 import './index.css';
 
@@ -31,6 +33,8 @@ const updateInput = (userInput) => {
 const store = createStore(markdownPreviewerReducer);
 
 /* ---------- REACT ---------- */
+const defaultEditorText = '# My Markdown Previwer!\n## This is a Subheading\nWe got [links](https://enp0s10.github.io/html/home.html)!\nNeed a space for inline-code? Sure!\n`System.out.prinln("Hello World")`\nOr code in a block!\n```\nconsole.log("we out here");\nconst add = 2 + 2;\n```\n- We got lists too!\n  - lower level bullets too\n    - Ya know?\n> Block Quotes!\nAnd Simple stuff like **BOLD**\n![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)';
+
 class UserInputWindow extends React.Component {
   constructor (props) {
     super(props);
@@ -48,13 +52,18 @@ class UserInputWindow extends React.Component {
     this.props.updateNewInput(event.target.value);
   }
 
+  componentDidMount() {
+    this.props.updateNewInput(defaultEditorText);
+  }
+  
+
   render() {
     return (
       <div className='editor-row row justify-content-center'>
         <div className='editor-container col-md-5 border rounded border-dark'>
           <h2 className='col-md-12'><strong>Editor</strong></h2>
           <div className='row'>
-            <textarea id="editor" className='border border-dark' onChange={this.handleChange}></textarea>
+            <textarea id="editor" className='border border-dark' onChange={this.handleChange} placeholder='Insert Markdown Text..'>{defaultEditorText}</textarea>
           </div>
         </div>
       </div>
@@ -71,12 +80,14 @@ class PreviewWindow extends React.Component {
   }
 
   render() {
+    const markdownText = marked.parse(this.props.previewMarkdown);
+
     return (
       <div className='preview-row row justify-content-center'>
         <div className='preview-container col-md-8 border rounded border-dark'>
           <h2 className='col-md-12'><strong>Preview</strong></h2>
           <div className='row'>
-            <div id="preview" className='text-wrap border border-dark'>{this.props.previewMarkdown}</div>
+            <div id="preview" className='text-wrap border border-dark' dangerouslySetInnerHTML={{__html: markdownText}}></div>
           </div>
         </div>
       </div>

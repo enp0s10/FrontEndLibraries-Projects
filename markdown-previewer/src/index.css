@@ -58,3 +58,33 @@ body {
   min-height: 200px;
   padding: 5px 25px 5px 25px;
 }
+#preview h1 {
+  border-bottom: 2px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#preview h2 {
+  border-bottom: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#preview h3 {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+#preview pre {
+  background-color: white;
+  font-family: 'Courier New', Courier, monospace;
+}
+#preview img {
+  max-width: 100%;
+}
+#preview td, #preview tr, #preview th {
+  border: 2px solid black;
+  padding: 3px 5px 3px 5px;
+}
+#preview blockquote {
+  border-left: 3px solid black;
+  padding-left: 5px;
+  margin-left: 25px;
+}
