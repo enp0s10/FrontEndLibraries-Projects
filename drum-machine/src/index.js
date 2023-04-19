@@ -6,21 +6,8 @@ import './index.css';
 /* ---------- REDUX ---------- */
 
 /* ---------- REACT ---------- */
-// Audio Variables
 
-const audioW = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3");
-const audioE = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3");
-
-const audioA = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3");
-const audioS = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3");
-const audioD = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3");
-
-const audioZ = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3");
-const audioX = new Audio("https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3");
-const audioC = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3");
-
-
-const DrumPad = () => {
+const DrumPad = (props) => {
   const [audio] = useState('Welcome!');
   // constructor
   // constructor (props) {
@@ -31,20 +18,26 @@ const DrumPad = () => {
   //   this.playAudio = this.playAudio.bind(this);
   // }
 
+  useEffect(() => {
+    // event listener for key presses
+    window.addEventListener('keydown', (event) => {
+      console.log(event.key + " key pressed");
+      playAudio(event.key)
+    });
 
-  // playAudio(letter) {
-  //   var audio = this.refs.audioQ;
-  //   switch(letter) {
-  //     case 'Q':
-  //       audio = this.refs.audioQ;
-  //       break;
-  //     case 'W':
-  //       audio = this.refs.audioW;
-  //     default:
-  //       break;
-  //   }
-  //   audio.play();
-  // }
+    var padButtons = document.getElementsByClassName("drum-pad");
+    Array.from(padButtons).forEach(function(padButton) {
+      padButton.addEventListener('click', (event) => {
+        console.log(event.target.innerHTML);
+      });
+    })
+  }, []);
+
+  function playAudio(key){
+    var currAudio = document.getElementById(key.toUpperCase());
+    currAudio.currentTime = 0;
+    currAudio.play();
+  };
 
   return (
     <div className='row justify-content-center'>
