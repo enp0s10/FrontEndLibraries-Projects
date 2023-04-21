@@ -3,32 +3,28 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-/* ---------- REDUX ---------- */
-
 /* ---------- REACT ---------- */
 
 const DrumPad = (props) => {
-  const [audio] = useState('Welcome!');
-  // constructor
-  // constructor (props) {
-  //   super(props);
-  //   this.state = {
-  //     audio: 'Welcome!'
-  //   }
-  //   this.playAudio = this.playAudio.bind(this);
-  // }
+  var [audio, setAudio] = useState('Welcome!');
 
   useEffect(() => {
     // event listener for key presses
     window.addEventListener('keydown', (event) => {
       console.log(event.key + " key pressed");
-      playAudio(event.key)
+      if (event.key.match(/[q,w,e,a,s,d,z,x,c]/i)) {
+        playAudio(event.key);
+      }
     });
 
+    // event listener for button clicks
+    // gets click event's childNode and plays audio element
     var padButtons = document.getElementsByClassName("drum-pad");
     Array.from(padButtons).forEach(function(padButton) {
       padButton.addEventListener('click', (event) => {
-        console.log(event.target.innerHTML);
+        let child = event.target.childNodes;
+        playAudio(child[1].id)
+        audio = setAudio(event.target.id);
       });
     })
   }, []);
@@ -48,45 +44,45 @@ const DrumPad = (props) => {
           {/* Row Q,W,E */}
           <div className='col-md-8 text-center'>
             <div className='row'>
-              <div id='heater-1' className='drum-pad'>
+              <div name="Q" id='Heater 1' className='drum-pad'>
                 Q
                 <audio id="Q" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
               </div>
-              <div id='heater-2' className='drum-pad'>
+              <div name="Q" id='Heater 2' className='drum-pad'>
                 W
                 <audio id="W" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"></audio>
               </div>
-              <div id='heater-3' className='drum-pad'>
+              <div name="Q" id='Heater 3' className='drum-pad'>
                 E
                 <audio id="E" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"></audio>
               </div>
             </div>
             {/* Row A,S,D */}
             <div className='row'>
-              <div id='heater-4' className='drum-pad'>
+              <div name="Q" id='Heater 4' className='drum-pad'>
                 A
                 <audio id="A" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>
               </div>
-              <div id='clap' className='drum-pad'>
+              <div name="Q" id='Clap' className='drum-pad'>
                 S
                 <audio id="S" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>
               </div>
-              <div id='open-hh' className='drum-pad'>
+              <div name="Q" id='Open HH' className='drum-pad'>
                 D
                 <audio id="D" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>
               </div>
             </div>
             {/* Row Z,X,C */}
             <div className='row'>
-              <div id='kick-n-hat' className='drum-pad'>
+              <div name="Q" id='Kick-n-Hat' className='drum-pad'>
                 Z
                 <audio id="Z" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>
               </div>
-              <div id='kick' className='drum-pad'>
+              <div name="Q" id='Kick' className='drum-pad'>
                 X
                 <audio id="X" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"></audio>
               </div>
-              <div id='closed-hh' className='drum-pad'>
+              <div name="Q" id='Closed HH' className='drum-pad'>
                 C
                 <audio id="C" className='clip' src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"></audio>
               </div>
@@ -102,8 +98,6 @@ const DrumPad = (props) => {
   )
 } // DrumPad
 
-
-/* ---------- REACT-REDUX ---------- */
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
