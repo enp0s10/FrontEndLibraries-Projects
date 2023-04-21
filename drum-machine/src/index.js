@@ -24,13 +24,14 @@ const DrumPad = (props) => {
       padButton.addEventListener('click', (event) => {
         let child = event.target.childNodes;
         playAudio(child[1].id)
-        audio = setAudio(event.target.id);
       });
     })
   }, []);
 
   function playAudio(key){
     var currAudio = document.getElementById(key.toUpperCase());
+    let audioName =  currAudio.parentElement.id;
+    audio = setAudio(audioName);
     currAudio.currentTime = 0;
     currAudio.play();
   };
