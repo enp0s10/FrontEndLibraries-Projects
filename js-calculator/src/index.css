@@ -1,13 +1,54 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: lightslategray;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.calculator-container {
+  width: 350px;
+  margin-top: 5%;
+  padding: 0px 15px 0px 15px;
+  display: flexbox;
+  overflow: visable;
+  border: 3px solid black;
+}
+
+#display {
+  min-height: 90px;
+  width: 100%;
+  background-color: black;
+  color: white;;
+  border: .5px solid whitesmoke;
+}
+
+#buttons {
+}
+
+.button {
+  padding: 25px 15px 25px 15px;
+  color: white;
+  background-color: grey;
+  border: 1px solid black;
+  font-size: 1.3rem;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.button-ac {
+  background-color: orangered;
+}
+
+.button-equal {
+  background-color: rgb(62, 62, 122);
+}
+
+.button:hover {
+  border: 1px solid lightgrey;
+  color: black;
+  cursor: pointer;
 }
